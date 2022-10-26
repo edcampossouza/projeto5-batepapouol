@@ -6,8 +6,8 @@ const URL_MENSAGENS = "https://mock-api.driven.com.br/api/v6/uol/messages";
 //carregar mensagens
 function carregaMensagens() {
   axios.get(URL_MENSAGENS).then(function respostaChegou(response) {
-    const mensagens = response.data;
     const chatArea = document.querySelector(".chat-area");
+    const mensagens = response.data;
     chatArea.innerHTML = mensagens
       .map((msg) =>
         msg.type === "status"
@@ -31,6 +31,8 @@ function carregaMensagens() {
           </div>`
       )
       .join("");
+    const elementosMensagem = document.querySelectorAll(".message-box");
+    elementosMensagem[elementosMensagem.length - 1].scrollIntoView();
   });
 }
 
@@ -39,5 +41,6 @@ function avisaStatusOnline() {
   console.log("estou online!");
 }
 
+carregaMensagens();
 setInterval(carregaMensagens, 1000 * periodoRecarregar);
 setInterval(avisaStatusOnline, 1000 * periodoAvisoOnline);
