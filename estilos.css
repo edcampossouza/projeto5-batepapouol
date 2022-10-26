@@ -35,8 +35,8 @@ body {
 
 .chat-area {
   padding-top: 106px;
-  padding-bottom: 80px;
-  height: 100%;
+  padding-bottom: 106px;
+  background-color: #f3f3f3;
 }
 
 .message-box {
@@ -78,6 +78,7 @@ body {
 .message-input ion-icon {
   font-size: 26px;
   width: 20%;
+  cursor: pointer;
 }
 
 .message-input input {
