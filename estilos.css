@@ -18,10 +18,16 @@ body {
   background-color: #ffffff;
   display: flex;
   justify-content: space-between;
+  position: fixed;
+  width: 375px;
+  padding: 16px 21px 22px 11px;
+  box-sizing: border-box;
+  font-size: 45px;
+  top: 0;
 }
 
 .chat-area {
-  padding-top: 25px;
+  padding-top: 106px;
   padding-bottom: 80px;
   height: 100%;
 }
@@ -58,4 +64,15 @@ body {
   width: 375px;
   background-color: #ffffff;
   justify-content: space-between;
+  align-items: center;
+}
+
+.message-input ion-icon {
+  font-size: 26px;
+  width: 20%;
+}
+
+.message-input input {
+  width: 80%;
+  border-width: 0;
 }
