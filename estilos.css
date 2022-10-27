@@ -48,7 +48,7 @@ body {
 }
 
 .message-box.private {
-  background-color: #FFDEDE;
+  background-color: #ffdede;
 }
 .message-box.status {
   background-color: #dcdcdc;
@@ -78,10 +78,18 @@ body {
   box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
 }
 
-.message-input ion-icon {
+.message-input .btn-enviar {
   font-size: 26px;
   width: 20%;
+  height: 100%;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-enviar:hover {
+  background-color: #f3f3f3;
 }
 
 .message-input input {

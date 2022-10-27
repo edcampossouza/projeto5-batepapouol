@@ -60,4 +60,32 @@ function avisaStatusOnline() {
   axios.post(URL_STATUS, { name: nome });
 }
 
+function enviaMensagemTodos() {
+  //pega mensagem no input
+  const caixaMensagem = document.querySelector(".message-input input");
+  const mensagem = caixaMensagem.value;
+  console.log(mensagem);
+  if (mensagem && mensagem.length > 0) {
+    const objetoMsg = {
+      from: nome,
+      to: "Todos",
+      text: mensagem,
+      type: "message", // ou "private_message" para o bônus
+    };
+    axios
+      .post(URL_MENSAGENS, objetoMsg)
+      .then(function () {
+        caixaMensagem.value = "";
+      })
+      .catch(function (err) {
+        alert("Erro ao enviar a mensagem. Tente novamente mais tarde");
+      });
+  }
+  //envia para Todos
+}
+
+function enviarHandler() {
+  enviaMensagemTodos();
+}
+
 login();
