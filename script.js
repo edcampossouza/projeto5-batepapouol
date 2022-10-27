@@ -1,8 +1,10 @@
 const periodoRecarregar = 2;
-const periodoAvisoOnline = 5;
+const periodoAvisoOnline = 4.5;
 
 const URL_LOGIN = "https://mock-api.driven.com.br/api/v6/uol/participants";
 const URL_MENSAGENS = "https://mock-api.driven.com.br/api/v6/uol/messages";
+const URL_STATUS = "https://mock-api.driven.com.br/api/v6/uol/status";
+let nome = null;
 
 //carregar mensagens
 function carregaMensagens() {
@@ -39,7 +41,6 @@ function carregaMensagens() {
 
 //pergunta nome e entra na sala
 function login() {
-  let nome = null;
   nome = prompt("Digite seu nome...");
   //login
   axios
@@ -56,7 +57,7 @@ function login() {
 }
 //avisa ao servidor que o usuario esta online
 function avisaStatusOnline() {
-  console.log("estou online!");
+  axios.post(URL_STATUS, { name: nome });
 }
 
 login();
