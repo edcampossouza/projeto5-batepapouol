@@ -19,19 +19,22 @@ function carregaMensagens() {
         <span class="username">${msg.from} </span>${msg.text}
         </div>
         `
-          : msg.type === "private_message"
+          : msg.type === "private_message" &&
+            (msg.to === "Todos" || msg.to === nome)
           ? `<div class="message-box private">
           <span class="time">(${msg.time}) </span>
           <span class="username">${msg.from} </span>
           reservadamente fala para <span class="username">${msg.to} </span>
           ${msg.text}
           </div>`
-          : `<div class="message-box">
+          : msg.type === "message"
+          ? `<div class="message-box">
           <span class="time">(${msg.time})</span>
           <span class="username">${msg.from} </span>
           fala para <span class="username">${msg.to} </span>
           ${msg.text}
           </div>`
+          : ""
       )
       .join("");
     const elementosMensagem = document.querySelectorAll(".message-box");
@@ -61,6 +64,10 @@ function avisaStatusOnline() {
 }
 
 function enviaMensagemTodos() {
+  enviaMensagem("Todos", false);
+}
+
+function enviaMensagem(participante, privada) {
   //pega mensagem no input
   const caixaMensagem = document.querySelector(".message-input input");
   const mensagem = caixaMensagem.value;
@@ -68,9 +75,9 @@ function enviaMensagemTodos() {
   if (mensagem && mensagem.length > 0) {
     const objetoMsg = {
       from: nome,
-      to: "Todos",
+      to: participante,
       text: mensagem,
-      type: "message", // ou "private_message" para o bônus
+      type: privada ? "private_message" : "message",
     };
     axios
       .post(URL_MENSAGENS, objetoMsg)
@@ -81,7 +88,6 @@ function enviaMensagemTodos() {
         alert("Erro ao enviar a mensagem. Tente novamente mais tarde");
       });
   }
-  //envia para Todos
 }
 
 function enviarHandler() {
