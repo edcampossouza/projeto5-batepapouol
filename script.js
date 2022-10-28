@@ -102,6 +102,13 @@ function mostraPainel() {
   const transparencia = document.querySelector(".transparencia");
   painel.classList.remove("escondido");
   transparencia.classList.remove("escondido");
+  if (envio_reservado) {
+    const res = document.querySelector("#li-reservado");
+    res.classList.add("selecionado");
+  } else {
+    const res = document.querySelector("#li-publico");
+    res.classList.add("selecionado");
+  }
   carregaContatos();
 }
 function escondePainel() {
@@ -165,10 +172,11 @@ function setEnvioAberto() {
   li_publico.classList.add("selecionado");
 }
 
-login();
 const caixaMensagem = document.querySelector(".message-input input");
 caixaMensagem.addEventListener("keypress", function (e) {
   if (e.key === "Enter") {
     enviarHandler();
   }
 });
+
+login();
