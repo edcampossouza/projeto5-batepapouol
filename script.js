@@ -90,6 +90,19 @@ function enviaMensagem(participante, privada) {
   }
 }
 
+function mostraPainel() {
+  const painel = document.querySelector(".painel-direita");
+  const transparencia = document.querySelector(".transparencia");
+  painel.classList.remove("escondido");
+  transparencia.classList.remove("escondido");
+}
+function escondePainel() {
+  const painel = document.querySelector(".painel-direita");
+  const transparencia = document.querySelector(".transparencia");
+  painel.classList.add("escondido");
+  transparencia.classList.add("escondido");
+}
+
 function enviarHandler() {
   enviaMensagemTodos();
 }

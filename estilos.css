@@ -1,6 +1,35 @@
 html {
   height: 100%;
 }
+
+.transparencia {
+  background-color: rgb(0, 0, 0, 0.8);
+  position: fixed;
+  width: 375px;
+  height: 100%;
+  z-index: 1;
+}
+
+.painel-direita {
+  width: 258px;
+  height: 100%;
+  background-color: red;
+  position: fixed;
+  left: calc(50% - 70px);
+  z-index: 2;
+}
+
+.header-painel {
+  background-color: green;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  font-weight: bold;
+  height: 80px;
+}
+
 body {
   display: flex;
   justify-content: center;
@@ -26,6 +55,10 @@ body {
   font-size: 45px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
   top: 0;
+}
+
+.header ion-icon {
+  cursor: pointer;
 }
 
 .header img {
@@ -96,4 +129,8 @@ body {
   width: 80%;
   height: 100%;
   border-width: 0;
+}
+
+.escondido {
+  display: none;
 }

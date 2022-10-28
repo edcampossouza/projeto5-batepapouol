@@ -16,15 +16,23 @@
     <title>Projeto 05 - Bate Papo - Eduardo Campos</title>
   </head>
   <body>
+    <div onclick="escondePainel()" class="transparencia escondido"></div>
     <div class="content">
+      <div class="painel-direita escondido">
+        <div class="header-painel">
+          Escolha um contato <br />para enviar mensagem:
+        </div>
+      </div>
       <div class="header">
         <img src="./images/logo.png" alt="logo uol" />
-        <ion-icon name="people"></ion-icon>
+        <ion-icon onclick="mostraPainel()" name="people"></ion-icon>
       </div>
       <div class="chat-area"></div>
       <div class="message-input">
         <input placeholder="Escreva aqui..." />
-        <div class="btn-enviar" onclick="enviarHandler()"><ion-icon name="paper-plane-outline"></ion-icon></div>
+        <div class="btn-enviar" onclick="enviarHandler()">
+          <ion-icon name="paper-plane-outline"></ion-icon>
+        </div>
       </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
