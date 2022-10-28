@@ -2,6 +2,17 @@ html {
   height: 100%;
 }
 
+body {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  background-color: #f3f3f3;
+  font-family: "Roboto", sans-serif;
+}
+
+/********************************
+  Classes painel lateral
+*********************************/
 .transparencia {
   background-color: rgb(0, 0, 0, 0.8);
   position: fixed;
@@ -74,13 +85,24 @@ html {
   margin-right: 5px;
 }
 
-body {
-  display: flex;
-  justify-content: center;
-  height: 100%;
-  background-color: #f3f3f3;
-  font-family: "Roboto", sans-serif;
+.escondido {
+  display: none;
 }
+
+.check {
+  display: none;
+}
+
+.selecionado .check {
+  display: inline-block;
+  color: #28bb25;
+}
+
+
+/********************************
+  classes do conteudo principal
+*********************************/
+
 .content {
   width: 375px;
   background-color: #f3f3f3;
@@ -175,17 +197,4 @@ body {
   width: 80%;
   height: 100%;
   border-width: 0;
-}
-
-.escondido {
-  display: none;
-}
-
-.check {
-  display: none;
-}
-
-.selecionado .check {
-  display: inline-block;
-  color: #28bb25;
 }
