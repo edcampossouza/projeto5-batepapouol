@@ -1,6 +1,8 @@
+/* 
+  CONSTANTES
+*/
 const periodoRecarregar = 2;
 const periodoAvisoOnline = 4.5;
-
 const URL_LOGIN = "https://mock-api.driven.com.br/api/v6/uol/participants";
 const URL_MENSAGENS = "https://mock-api.driven.com.br/api/v6/uol/messages";
 const URL_STATUS = "https://mock-api.driven.com.br/api/v6/uol/status";
@@ -10,10 +12,13 @@ let nome = null;
 let nome_destinatario = "Todos";
 let envio_reservado = false;
 
-const li_publico = document.querySelector("#li-publico");
-const li_reservado = document.querySelector("#li-reservado");
+/**** FIM DAS CONSTANTES ****/
 
-//carregar mensagens
+/********************************
+  Funcoes chamadas repetidamente
+*********************************/
+
+// carrega as mensagens do servidor
 function carregaMensagens() {
   axios.get(URL_MENSAGENS).then(function respostaChegou(response) {
     const chatArea = document.querySelector(".chat-area");
@@ -49,30 +54,16 @@ function carregaMensagens() {
   });
 }
 
-//pergunta nome e entra na sala
-function login() {
-  nome = prompt("Digite seu nome...");
-  //login
-  axios
-    .post(URL_LOGIN, { name: nome })
-    .then(function response(resposta) {
-      setInterval(avisaStatusOnline, 1000 * periodoAvisoOnline);
-      setInterval(carregaMensagens, 1000 * periodoRecarregar);
-      return;
-    })
-    .catch(function (erro) {
-      alert("Nome indisponível");
-      login();
-    });
-}
-//avisa ao servidor que o usuario esta online
+// avisa que o usuario esta online
 function avisaStatusOnline() {
   axios.post(URL_STATUS, { name: nome });
 }
 
-function enviaMensagemTodos() {
-  enviaMensagem("Todos", false);
-}
+/**** FIM DAS FUNCOES RECORRENTES ****/
+
+/********************************
+  Envio de mensagem
+*********************************/
 
 function enviaMensagem(participante, privada) {
   //pega mensagem no input
@@ -97,6 +88,18 @@ function enviaMensagem(participante, privada) {
   }
 }
 
+function enviarHandler() {
+  enviaMensagem(nome_destinatario, envio_reservado);
+}
+
+/**** FIM DO ENVIO DE MENSAGENS ****/
+
+/********************************
+  Funcoes do painel lateral
+*********************************/
+
+// mostra o painel lateral, colocando um checkmark nas opcoes selecionadas (destinatario e modo de envio)
+
 function mostraPainel() {
   const painel = document.querySelector(".painel-direita");
   const transparencia = document.querySelector(".transparencia");
@@ -117,6 +120,8 @@ function escondePainel() {
   painel.classList.add("escondido");
   transparencia.classList.add("escondido");
 }
+
+//carrega a lista de contatos e preenche o painel lateral
 
 function carregaContatos() {
   const lista_contatos = document.querySelector(".lista-contatos");
@@ -147,10 +152,7 @@ function carregaContatos() {
     });
 }
 
-function enviarHandler() {
-  enviaMensagem(nome_destinatario, envio_reservado);
-}
-
+// muda o destinatario das mensagens
 function setDestinatario(elemento, nome_dest) {
   nome_destinatario = nome_dest;
   const destinatarios = document.querySelectorAll(".lista-contatos li");
@@ -159,6 +161,11 @@ function setDestinatario(elemento, nome_dest) {
   });
   elemento.classList.add("selecionado");
 }
+
+//  Funcoes para alterar o modo de envio entre Reservado e Aberto (Publico)
+
+const li_publico = document.querySelector("#li-publico");
+const li_reservado = document.querySelector("#li-reservado");
 
 function setEnvioReservado() {
   envio_reservado = true;
@@ -172,11 +179,36 @@ function setEnvioAberto() {
   li_publico.classList.add("selecionado");
 }
 
+/**** FIM DAS FUNCOES DO PAINEL LATERAL ****/
+
+/********************************
+  Funcao que permite o envio de mensagens com a tecla Enter
+*********************************/
+
 const caixaMensagem = document.querySelector(".message-input input");
 caixaMensagem.addEventListener("keypress", function (e) {
   if (e.key === "Enter") {
     enviarHandler();
   }
 });
+
+/*************************************
+  Inicio da execucao: realiza o login
+*************************************/
+function login() {
+  nome = prompt("Digite seu nome...");
+  //login
+  axios
+    .post(URL_LOGIN, { name: nome })
+    .then(function response(resposta) {
+      setInterval(avisaStatusOnline, 1000 * periodoAvisoOnline);
+      setInterval(carregaMensagens, 1000 * periodoRecarregar);
+      return;
+    })
+    .catch(function (erro) {
+      alert("Nome indisponível");
+      login();
+    });
+}
 
 login();
