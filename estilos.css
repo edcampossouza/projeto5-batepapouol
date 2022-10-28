@@ -13,15 +13,14 @@ html {
 .painel-direita {
   width: 258px;
   height: 100%;
-  background-color: red;
   position: fixed;
   left: calc(50% - 70px);
   font-size: 16px;
   z-index: 2;
+  background-color: white;
 }
 
 .header-painel {
-  background-color: green;
   display: flex;
   text-align: center;
   justify-content: center;
@@ -37,9 +36,15 @@ html {
 
 .painel-direita li {
   padding: 8px 8px;
+}
+
+.painel-direita li span{
+  width: 100%;
   display: flex;
   align-items: center;
+  overflow-x: hidden;
 }
+
 
 .painel-direita ion-icon {
   font-size: 25px;
