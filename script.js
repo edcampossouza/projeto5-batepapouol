@@ -166,3 +166,9 @@ function setEnvioAberto() {
 }
 
 login();
+const caixaMensagem = document.querySelector(".message-input input");
+caixaMensagem.addEventListener("keypress", function (e) {
+  if (e.key === "Enter") {
+    enviarHandler();
+  }
+});
