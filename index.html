@@ -26,12 +26,20 @@
         <div class="header-painel header-visibilidade">
           Escolha a visibilidade
         </div>
-        <ul>
+        <ul class="lista-visibilidade">
           <li onclick="setEnvioAberto()" id="li-publico">
-            <ion-icon name="lock-open"></ion-icon>Público
+            <span>
+              <ion-icon name="lock-open"></ion-icon
+              ><span class="nome">Público</span
+              ><ion-icon class="check" name="checkmark-circle"></ion-icon>
+            </span>
           </li>
           <li onclick="setEnvioReservado()" id="li-reservado">
-            <ion-icon name="lock-closed"></ion-icon>Reservadamente
+            <span>
+              <ion-icon name="lock-closed"></ion-icon
+              ><span class="nome">Reservadamente</span
+              ><ion-icon class="check" name="checkmark-circle"></ion-icon>
+            </span>
           </li>
         </ul>
       </div>

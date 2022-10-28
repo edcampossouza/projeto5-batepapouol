@@ -126,7 +126,7 @@ function carregaContatos() {
       const contatos = response.data;
       const todos = `<li onclick="setDestinatario(this, 'Todos')" class="${
         nome_destinatario === "Todos" ? "selecionado" : ""
-      }"><span><ion-icon name='people'> </ion-icon>Todos</li></span>`;
+      }"><span><ion-icon name='people'> </ion-icon><span class='nome'>Todos</span><ion-icon class="check" name="checkmark-circle"></ion-icon></li>`;
       lista_contatos.innerHTML =
         todos +
         contatos
@@ -135,9 +135,9 @@ function carregaContatos() {
               `<li onclick="setDestinatario(this, '${c.name}')" class="${
                 nome_destinatario === c.name ? "selecionado" : ""
               }"> 
-                <span><ion-icon name='person-circle'> </ion-icon>${
+                <span><ion-icon name='person-circle'> </ion-icon><span class='nome'>${
                   c.name
-                }</span>
+                }</span><ion-icon class="check" name="checkmark-circle"></ion-icon></span>
               </li>`
           )
           .join("");

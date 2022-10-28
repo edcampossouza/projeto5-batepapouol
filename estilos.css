@@ -39,13 +39,35 @@ html {
   padding: 8px 8px;
 }
 
-.painel-direita li span{
+.painel-direita li span {
   width: 100%;
   display: flex;
   align-items: center;
   overflow-x: hidden;
+  overflow-y: hidden;
 }
 
+.painel-direita li span ion-icon {
+  width: 15%;
+}
+
+.painel-direita li span .nome {
+  width: 70%;
+  display: flex;
+  align-items: center;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.lista-visibilidade li .nome {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.lista-visibilidade li ion-icon {
+  width: 15%;
+}
 
 .painel-direita ion-icon {
   font-size: 25px;
@@ -101,6 +123,7 @@ body {
   padding: 12px 12px;
   font-size: 14px;
   line-height: 20px;
+  overflow-x: hidden;
 }
 
 .message-box.private {
@@ -158,6 +181,11 @@ body {
   display: none;
 }
 
-.selecionado {
-  background-color: green;
+.check {
+  display: none;
+}
+
+.selecionado .check {
+  display: inline-block;
+  color: #28bb25;
 }
