@@ -27,14 +27,14 @@
           Escolha a visibilidade
         </div>
         <ul class="lista-visibilidade">
-          <li onclick="setEnvioAberto()" id="li-publico">
+          <li data-identifier="visibility" onclick="setEnvioAberto()" id="li-publico">
             <span>
               <ion-icon name="lock-open"></ion-icon
               ><span class="nome">Público</span
               ><ion-icon class="check" name="checkmark-circle"></ion-icon>
             </span>
           </li>
-          <li onclick="setEnvioReservado()" id="li-reservado">
+          <li data-identifier="visibility" onclick="setEnvioReservado()" id="li-reservado">
             <span>
               <ion-icon name="lock-closed"></ion-icon
               ><span class="nome">Reservadamente</span

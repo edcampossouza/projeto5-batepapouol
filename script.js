@@ -84,6 +84,7 @@ function enviaMensagem(participante, privada) {
       })
       .catch(function (err) {
         alert("Erro ao enviar a mensagem. Tente novamente mais tarde");
+        window.location.reload();
       });
   }
 }
@@ -129,7 +130,7 @@ function carregaContatos() {
     .get(URL_PARTICIPANTES)
     .then(function (response) {
       const contatos = response.data;
-      const todos = `<li onclick="setDestinatario(this, 'Todos')" class="${
+      const todos = `<li data-identifier="participant" onclick="setDestinatario(this, 'Todos')" class="${
         nome_destinatario === "Todos" ? "selecionado" : ""
       }"><span><ion-icon name='people'> </ion-icon><span class='nome'>Todos</span><ion-icon class="check" name="checkmark-circle"></ion-icon></li>`;
       lista_contatos.innerHTML =
@@ -137,7 +138,7 @@ function carregaContatos() {
         contatos
           .map(
             (c) =>
-              `<li onclick="setDestinatario(this, '${c.name}')" class="${
+              `<li data-identifier="participant" onclick="setDestinatario(this, '${c.name}')" class="${
                 nome_destinatario === c.name ? "selecionado" : ""
               }"> 
                 <span><ion-icon name='person-circle'> </ion-icon><span class='nome'>${
