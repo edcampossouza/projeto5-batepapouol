@@ -4,7 +4,14 @@ const periodoAvisoOnline = 4.5;
 const URL_LOGIN = "https://mock-api.driven.com.br/api/v6/uol/participants";
 const URL_MENSAGENS = "https://mock-api.driven.com.br/api/v6/uol/messages";
 const URL_STATUS = "https://mock-api.driven.com.br/api/v6/uol/status";
+const URL_PARTICIPANTES =
+  "https://mock-api.driven.com.br/api/v6/uol/participants";
 let nome = null;
+let nome_destinatario = "Todos";
+let envio_reservado = false;
+
+const li_publico = document.querySelector("#li-publico");
+const li_reservado = document.querySelector("#li-reservado");
 
 //carregar mensagens
 function carregaMensagens() {
@@ -71,7 +78,6 @@ function enviaMensagem(participante, privada) {
   //pega mensagem no input
   const caixaMensagem = document.querySelector(".message-input input");
   const mensagem = caixaMensagem.value;
-  console.log(mensagem);
   if (mensagem && mensagem.length > 0) {
     const objetoMsg = {
       from: nome,
@@ -83,6 +89,7 @@ function enviaMensagem(participante, privada) {
       .post(URL_MENSAGENS, objetoMsg)
       .then(function () {
         caixaMensagem.value = "";
+        carregaMensagens();
       })
       .catch(function (err) {
         alert("Erro ao enviar a mensagem. Tente novamente mais tarde");
@@ -95,6 +102,7 @@ function mostraPainel() {
   const transparencia = document.querySelector(".transparencia");
   painel.classList.remove("escondido");
   transparencia.classList.remove("escondido");
+  carregaContatos();
 }
 function escondePainel() {
   const painel = document.querySelector(".painel-direita");
@@ -103,8 +111,56 @@ function escondePainel() {
   transparencia.classList.add("escondido");
 }
 
+function carregaContatos() {
+  const lista_contatos = document.querySelector(".lista-contatos");
+  axios
+    .get(URL_PARTICIPANTES)
+    .then(function (response) {
+      const contatos = response.data;
+      const todos = `<li onclick="setDestinatario(this, 'Todos')" class="${
+        nome_destinatario === "Todos" ? "selecionado" : ""
+      }"><ion-icon name='people'> </ion-icon>Todos</li>`;
+      lista_contatos.innerHTML =
+        todos +
+        contatos
+          .map(
+            (c) =>
+              `<li onclick="setDestinatario(this, '${c.name}')" class="${
+                nome_destinatario === c.name ? "selecionado" : ""
+              }"> 
+                <ion-icon name='person-circle'> </ion-icon>${c.name}
+              </li>`
+          )
+          .join("");
+    })
+    .catch(function (erro) {
+      alert("Erro ao carregar a lista de contatos");
+    });
+}
+
 function enviarHandler() {
-  enviaMensagemTodos();
+  enviaMensagem(nome_destinatario, envio_reservado);
+}
+
+function setDestinatario(elemento, nome_dest) {
+  nome_destinatario = nome_dest;
+  const destinatarios = document.querySelectorAll(".lista-contatos li");
+  destinatarios.forEach((li) => {
+    li.classList.remove("selecionado");
+  });
+  elemento.classList.add("selecionado");
+}
+
+function setEnvioReservado() {
+  envio_reservado = true;
+  li_reservado.classList.add("selecionado");
+  li_publico.classList.remove("selecionado");
+}
+
+function setEnvioAberto() {
+  envio_reservado = false;
+  li_reservado.classList.remove("selecionado");
+  li_publico.classList.add("selecionado");
 }
 
 login();

@@ -16,6 +16,7 @@ html {
   background-color: red;
   position: fixed;
   left: calc(50% - 70px);
+  font-size: 16px;
   z-index: 2;
 }
 
@@ -28,6 +29,21 @@ html {
   font-size: 16px;
   font-weight: bold;
   height: 80px;
+}
+
+.header-visibilidade {
+  height: 66px;
+}
+
+.painel-direita li {
+  padding: 8px 8px;
+  display: flex;
+  align-items: center;
+}
+
+.painel-direita ion-icon {
+  font-size: 25px;
+  margin-right: 5px;
 }
 
 body {
@@ -133,4 +149,8 @@ body {
 
 .escondido {
   display: none;
+}
+
+.selecionado {
+  background-color: green;
 }
