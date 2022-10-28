@@ -98,6 +98,7 @@ function enviarHandler() {
 /********************************
   Funcoes do painel lateral
 *********************************/
+const linha_status = document.querySelector("#linha-status");
 
 // mostra o painel lateral, colocando um checkmark nas opcoes selecionadas (destinatario e modo de envio)
 
@@ -138,7 +139,9 @@ function carregaContatos() {
         contatos
           .map(
             (c) =>
-              `<li data-identifier="participant" onclick="setDestinatario(this, '${c.name}')" class="${
+              `<li data-identifier="participant" onclick="setDestinatario(this, '${
+                c.name
+              }')" class="${
                 nome_destinatario === c.name ? "selecionado" : ""
               }"> 
                 <span><ion-icon name='person-circle'> </ion-icon><span class='nome'>${
@@ -161,6 +164,9 @@ function setDestinatario(elemento, nome_dest) {
     li.classList.remove("selecionado");
   });
   elemento.classList.add("selecionado");
+  linha_status.innerHTML = `Enviando para: ${nome_destinatario} (${
+    envio_reservado ? "Reservadamente" : "Público"
+  })`;
 }
 
 //  Funcoes para alterar o modo de envio entre Reservado e Aberto (Publico)
@@ -172,12 +178,14 @@ function setEnvioReservado() {
   envio_reservado = true;
   li_reservado.classList.add("selecionado");
   li_publico.classList.remove("selecionado");
+  linha_status.innerHTML = `Enviando para: ${nome_destinatario} (Reservadamente)`;
 }
 
 function setEnvioAberto() {
   envio_reservado = false;
   li_reservado.classList.remove("selecionado");
   li_publico.classList.add("selecionado");
+  linha_status.innerHTML = `Enviando para: ${nome_destinatario} (Público)`;
 }
 
 /**** FIM DAS FUNCOES DO PAINEL LATERAL ****/
