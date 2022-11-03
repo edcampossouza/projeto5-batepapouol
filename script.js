@@ -33,14 +33,14 @@ function carregaMensagens() {
         `
           : msg.type === "private_message" &&
             (msg.to === "Todos" || msg.to === nome || msg.from === nome)
-          ? `<div class="message-box private">
+          ? `<div class="message-box private" data-test="message" >
           <span class="time">(${msg.time}) </span>
           <span class="username">${msg.from} </span>
           reservadamente fala para <span class="username">${msg.to} </span>
           ${msg.text}
           </div>`
           : msg.type === "message"
-          ? `<div class="message-box">
+          ? `<div class="message-box" data-test="message" >
           <span class="time">(${msg.time})</span>
           <span class="username">${msg.from} </span>
           fala para <span class="username">${msg.to} </span>

@@ -49,12 +49,12 @@
       </div>
       <div class="chat-area"></div>
       <div class="message-input">
-        <input placeholder="Escreva aqui..." />
-        <div class="btn-enviar" onclick="enviarHandler()">
+        <input data-test="input-message" placeholder="Escreva aqui..." />
+        <div class="btn-enviar" onclick="enviarHandler()" data-test="send-message">
           <ion-icon name="paper-plane-outline"></ion-icon>
         </div>
       </div>
-      <div id="linha-status">Enviando para: Todos (Público)</div>
+      <div id="linha-status" data-test="recipient">Enviando para: Todos (Público)</div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="script.js"></script>
