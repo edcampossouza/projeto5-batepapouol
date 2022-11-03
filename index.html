@@ -27,25 +27,25 @@
           Escolha a visibilidade
         </div>
         <ul class="lista-visibilidade">
-          <li data-identifier="visibility" onclick="setEnvioAberto()" id="li-publico">
+          <li data-test="public" onclick="setEnvioAberto()" id="li-publico">
             <span>
               <ion-icon name="lock-open"></ion-icon
               ><span class="nome">Público</span
-              ><ion-icon class="check" name="checkmark-circle"></ion-icon>
+              ><ion-icon class="check" name="checkmark-circle" data-test="check"></ion-icon>
             </span>
           </li>
-          <li data-identifier="visibility" onclick="setEnvioReservado()" id="li-reservado">
+          <li data-test="private" onclick="setEnvioReservado()" id="li-reservado">
             <span>
               <ion-icon name="lock-closed"></ion-icon
               ><span class="nome">Reservadamente</span
-              ><ion-icon class="check" name="checkmark-circle"></ion-icon>
+              ><ion-icon class="check" name="checkmark-circle" data-test="check"></ion-icon>
             </span>
           </li>
         </ul>
       </div>
       <div class="header">
         <img src="./images/logo.png" alt="logo uol" />
-        <ion-icon onclick="mostraPainel()" name="people"></ion-icon>
+        <ion-icon onclick="mostraPainel()" name="people" data-test="open-participants"></ion-icon>
       </div>
       <div class="chat-area"></div>
       <div class="message-input">

@@ -26,7 +26,7 @@ function carregaMensagens() {
     chatArea.innerHTML = mensagens
       .map((msg) =>
         msg.type === "status"
-          ? `<div class="message-box status">
+          ? `<div class="message-box status" data-test="message" >
         <span class="time">(${msg.time})</span>
         <span class="username">${msg.from} </span>${msg.text}
         </div>
@@ -131,7 +131,7 @@ function carregaContatos() {
     .get(URL_PARTICIPANTES)
     .then(function (response) {
       const contatos = response.data;
-      const todos = `<li data-identifier="participant" onclick="setDestinatario(this, 'Todos')" class="${
+      const todos = `<li data-test="all" onclick="setDestinatario(this, 'Todos')" class="${
         nome_destinatario === "Todos" ? "selecionado" : ""
       }"><span><ion-icon name='people'> </ion-icon><span class='nome'>Todos</span><ion-icon class="check" name="checkmark-circle"></ion-icon></li>`;
       lista_contatos.innerHTML =
@@ -139,14 +139,14 @@ function carregaContatos() {
         contatos
           .map(
             (c) =>
-              `<li data-identifier="participant" onclick="setDestinatario(this, '${
+              `<li data-test="participant" onclick="setDestinatario(this, '${
                 c.name
               }')" class="${
                 nome_destinatario === c.name ? "selecionado" : ""
               }"> 
                 <span><ion-icon name='person-circle'> </ion-icon><span class='nome'>${
                   c.name
-                }</span><ion-icon class="check" name="checkmark-circle"></ion-icon></span>
+                }</span><ion-icon class="check" name="checkmark-circle" data-test="check"></ion-icon></span>
               </li>`
           )
           .join("");
